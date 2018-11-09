@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import Pets from "./Pets"
+import Input from "./Input"
 
 import {
     Link
@@ -18,26 +19,43 @@ class Shelter extends React.Component {
         super(props)
         this.state =
             {
-                pets: []
+                pets: [],
+                shelter: []
+
             }
     }
     async componentDidMount() {
+        const shelterResponse = await fetch(`http://api.petfinder.com/shelter.get?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
+        const shelterJson = await shelterResponse.json()
+
+        // this.setState({ shelter: json.petfinder.shelter.$t })
+
         const res = await fetch(`http://api.petfinder.com/shelter.getPets?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
         const json = await res.json();
-        //  this.setState({ pets: json.petfinder.pets.pet })
+        this.setState({ pets: json.petfinder.pets.pet })
         console.log(this.state)
     }
-    render() {
-        return (
-            <div>
 
+    render() {
+       
+        return (
+            
+            <div>
+                <p> {this.props.match.params.id}  </p>
+                <ul> 
+                {this.state.pets.map(pets =>
+                <li key={pets.name.$t}>{pets.name.$t}, {pets.age.$t}, <p>{pets.description.$t}</p>
+                  
                 
+                </li>
+                )}
+                </ul>
 
             </div>
-        )
-
+        );
     }
 }
+
 
 export default Shelter;
 // const api_call =
