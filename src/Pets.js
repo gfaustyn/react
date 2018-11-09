@@ -3,8 +3,8 @@ import React from 'react';
 const Pets = (props) => {
   return (
     <div>
-      {props.shelters.map(shelter => <p>Shelter Information: {shelter.name.$t}, {shelter.phone.$t}, {shelter.email.$t}</p>)}
-      {props.pets.map(pets => <p>Available Pets: {pets.breed.$t}, {pets.sex.$t}, {pets.name.$t}</p>)}
+      {/* {props.shelters.map(shelter => <p>Shelter Information: {shelter.name.$t}, {shelter.phone.$t}, {shelter.email.$t}</p>)} */}
+      {props.pets.map(pets => <p>Available Pets: {pets.pet.breed.$t}, {pets.pet.sex.$t}, {pets.pet.name.$t}</p>)}
       
       </div>
   )

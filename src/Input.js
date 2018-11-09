@@ -2,9 +2,7 @@ import React from 'react';
 
 
 class Input extends React.Component{
-    state = {
-        shelters: [],
-    }
+    
 
     onZipUpdate = (e) => {
         this.setState({zipcode: e.target.value})
