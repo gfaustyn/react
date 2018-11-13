@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
-import Pets from "./Pets"
+import Pet from "./Pet"
 import Titles from "./Titles"
 import Input from "./Input"
 import Shelters from "./Shelters"
 import Shelter from "./Shelter"
+import Randompet from "./Randompet"
+import Petdetails from "./Petdetails"
 import {
   BrowserRouter,
   Route,
@@ -24,13 +26,22 @@ class App extends React.Component {
           <BrowserRouter> 
             <Switch>
               
-                <Route exact path="/" component={Shelters} />
+            <Route exact path="/" component={Shelters} />
                 <Route path="/shelters/:id" render={props=>
                   (<Shelter key={props.match.params.id} {...props}/>) }/>
                   <Route path="/shelters" component={Shelters} />
                   <Route path="/shelter" component={Shelter}/>
                   <Route path="/shelter/:id" render={props => 
                   (<Shelter key={props.params.pets}{...props}/>)}/>
+
+                  <Route exact path="/" component={Petdetails} />
+                <Route path="/pets/:id" render={props=>
+                  (<Shelter key={props.match.params.id} {...props}/>) }/>
+                  <Route path="/shelters" component={Shelters} />
+                  <Route path="/shelter" component={Shelter}/>
+                  <Route path="/pets/:id" render={props => 
+                  (<Petdetails key={props.params.pets}{...props}/>)}/>
+
                </Switch>  
           </BrowserRouter>
         

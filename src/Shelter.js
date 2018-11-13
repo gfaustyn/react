@@ -1,13 +1,16 @@
 import React from 'react';
 import './App.css';
-import Pets from "./Pets"
+import Petdetails from "./Petdetails"
 import Input from "./Input"
+import Pet from "./Pet"
 
 import {
     Link
-
+   
 } from 'react-router-dom';
-
+import {
+    CardColumns
+} from 'reactstrap';
 
 
 const APIKEY = "c42f6b4fc6a776412cc0a693ce4f40d6"
@@ -32,31 +35,42 @@ class Shelter extends React.Component {
 
         const res = await fetch(`http://api.petfinder.com/shelter.getPets?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
         const json = await res.json();
-        this.setState({ pets: json.petfinder.pets.pet })
-        console.log(this.state)
+        // API returns an array of pets if multiple, else it returns
+        // an object. 
+        Array.isArray(json.petfinder.pets.pet)
+            ? this.setState({ pets: json.petfinder.pets.pet })
+            : this.setState({ pets: [json.petfinder.pets.pet] });
+            console.log(this.state)
     }
+         
 
-    render() {
-       
-        return (
-            
-            <div>
-                <p> {this.props.match.params.id}  </p>
-                <ul> 
-                {this.state.pets.map(pets =>
-                <li key={pets.name.$t}>{pets.name.$t}, {pets.age.$t}, <p>{pets.description.$t}</p>
-                  
-                
-                </li>
-                )}
-                </ul>
 
-            </div>
-        );
-    }
-}
+
+        render() {       
+            return (            
+                <div>
+                    <h1>{this.props.match.params.id}</h1>
+                    
+                    <CardColumns>
+                        
+                        {this.state.pets.map(pet =>
+                            <Pet key={pet.name.$t} 
+                                name={pet.name.$t} 
+                                id={pet.id.$t}
+                               image={pet.media.photos.photo[3].$t} />
+                               
+                        )}
+                        
+                            
+             
+                    </CardColumns>
+                </div>
+            );
+        }
+    }   
+
 
 
 export default Shelter;
-// const api_call =
-    //   await fetch(`http://api.petfinder.com/shelter.getPets?format=json&key=${apiKey}&id=${this.loadPets}`);
+
+{/* // <Link to={`/pets/${pets.name.$t}`}> {pets.name.$t}, {pets.id.$t}  </Link> */}

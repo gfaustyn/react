@@ -1,8 +1,9 @@
 import React from 'react';
-import './App.css';
-import Pets from "./Pets"
+ import './App.css';
+import Petdetails from "./Petdetails"
 import Titles from "./Titles"
 import Input from "./Input"
+import Pet from "./Pet"
 
 
 import {
@@ -11,15 +12,18 @@ import {
 } from 'react-router-dom';
 
 
+
 const APIKEY = "c42f6b4fc6a776412cc0a693ce4f40d6"
+
 
 
 class Shelters extends React.Component {
   state = {
     shelters: [], 
-    pets: [],  
+    pets: []  
     
     }
+    
 
 // makes the API call and prints to the console/
   getPets = async  (zipcode) => {
