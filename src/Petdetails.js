@@ -28,7 +28,7 @@ class Petdetails extends React.Component {
     async componentDidMount() {
         const shelterResponse = await fetch(`http://api.petfinder.com/shelter.get?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
         const shelterJson = await shelterResponse.json()
-        // this.setState({ shelter: json.petfinder.shelter.$t })
+        this.setState({ shelter: json.petfinder.shelter.$t })
 
         const res = await fetch(`http://api.petfinder.com/shelter.getPets?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
         const json = await res.json();
@@ -36,7 +36,7 @@ class Petdetails extends React.Component {
 
      const detailsRes = await fetch(`http://api.petfinder.com/pet.get?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
      const detailsJson = await detailsRes.json();
-     this.setState({details: json.petfinder.pets.pet})
+     this.setState({details: json.petfinder.pets.options.option})
      console.log(this.state)
 
 
@@ -47,12 +47,19 @@ class Petdetails extends React.Component {
 
     render() {
         return(
-            <div>
-             <h1>{this.props.match.params.id}</h1>
-          
-
+           
+           <div>
+            <p> {this.props.match.params.id}  </p>
+           <ul> 
+           {this.state.options.map(options =>
+           <li key={options.name.$t}>{options.name.$t}, {options.age.$t}, <p>{options.description.$t}</p>
+             
+           
+           </li>
+           )}
+           </ul>
         </div>
-    );
+   );
 }
 }
 

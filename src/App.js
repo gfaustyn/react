@@ -5,7 +5,7 @@ import Titles from "./Titles"
 import Input from "./Input"
 import Shelters from "./Shelters"
 import Shelter from "./Shelter"
-import Randompet from "./Randompet"
+
 import Petdetails from "./Petdetails"
 import {
   BrowserRouter,
