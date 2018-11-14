@@ -19,7 +19,7 @@ const Pet = (props) => {
   return (
     <div>
         <Card key={props.name}>
-        <Link  to={`/pets/${props.id}`}> 
+        <Link  to={`/pet/${props.shelterPetId}`}> 
             <CardImg src={props.image} />
             <CardBody>
                 <CardTitle>

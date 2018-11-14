@@ -1,13 +1,12 @@
 import React from 'react';
 import './App.css';
-import Petdetails from "./Petdetails"
-import Input from "./Input"
+
 import Pet from "./Pet"
 
-import {
-    Link
+// import {
+//     Link
    
-} from 'react-router-dom';
+// } from 'react-router-dom';
 import {
     CardColumns
 } from 'reactstrap';
@@ -23,7 +22,8 @@ class Shelter extends React.Component {
         this.state =
             {
                 pets: [],
-                shelter: []
+                shelter: [],
+                details: []
 
             }
     }
@@ -56,7 +56,8 @@ class Shelter extends React.Component {
                         {this.state.pets.map(pet =>
                             <Pet key={pet.name.$t} 
                                 name={pet.name.$t} 
-                                id={pet.id.$t}
+                                shelterPetId={pet.id.$t}
+                                
                                image={pet.media.photos.photo[3].$t} />
                                
                         )}
