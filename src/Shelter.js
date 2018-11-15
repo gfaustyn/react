@@ -1,12 +1,7 @@
 import React from 'react';
 import './App.css';
-
 import Pet from "./Pet"
 
-// import {
-//     Link
-   
-// } from 'react-router-dom';
 import {
     CardColumns
 } from 'reactstrap';
@@ -14,24 +9,25 @@ import {
 
 const APIKEY = "c42f6b4fc6a776412cc0a693ce4f40d6"
 
-
+// sets the state for the search
 class Shelter extends React.Component {
 
     constructor(props) {
         super(props)
         this.state =
             {
+                
                 pets: [],
                 shelter: [],
-                details: []
+                details: [],
+                hasError: false
 
             }
+    
     }
-    async componentDidMount() {
-        const shelterResponse = await fetch(`http://api.petfinder.com/shelter.get?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
-        const shelterJson = await shelterResponse.json()
 
-        // this.setState({ shelter: json.petfinder.shelter.$t })
+    // makes API call for list of animals in shelter by shelter ID (2nd endpoint)
+    async componentDidMount() {
 
         const res = await fetch(`http://api.petfinder.com/shelter.getPets?format=json&key=${APIKEY}&id=${this.props.match.params.id}`)
         const json = await res.json();
@@ -43,8 +39,10 @@ class Shelter extends React.Component {
             console.log(this.state)
     }
          
-
-
+                    
+                    componentDidCatch(error, info) {
+                    this.setState({hasError: true });
+                    }
 
         render() {       
             return (            

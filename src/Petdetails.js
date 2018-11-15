@@ -1,8 +1,6 @@
 import React from 'react';
 import './App.css';
 import Shelter from "./Shelter"
-
-
 import {
     Link
 
@@ -19,8 +17,7 @@ class Petdetails extends React.Component {
         super(props)
         this.state =
             {
-                pets: [],
-                shelter: [],
+               
                 details: []
                 
 
@@ -28,12 +25,15 @@ class Petdetails extends React.Component {
 
          
     }
+    // api fetch for a single pet by ID (3rd endpoint)
     async componentDidMount() {
        
 
         const detailsRes = await fetch(`http://api.petfinder.com/pet.get?format=json&key=${APIKEY}&id=${this.props.match.params.shelterPetId}`)
         const json = await detailsRes.json();
-        this.setState({details: json.petfinder.pet})
+        Array.isArray(json.petfinder.pet)
+        ? this.setState({ details: json.petfinder.pet })
+        : this.setState({ details: [json.petfinder.pet] });
             console.log(this.state)
 
 
@@ -44,13 +44,28 @@ class Petdetails extends React.Component {
 
     render() {
         return (
-           <div>
-            <p> {this.props.match.params.shelterPetId}</p>
-           </div>
-    );
+         
+
+            <div>
+            <p> {this.props.match.params.id}  </p>
+           <ul> 
+           {this.state.details.map(details =>
+           <li key={details.name.$t}>
+           {details.name.$t}, {details.age.$t}, {details.sex.$t} <p>{details.description.$t}</p>
+
+          <img src= {details.media.photos.photo[3].$t}></img> 
+             
+           
+           </li>
+           )}
+           </ul>
+        </div>
+   );
+    
 }
 }
 
-    
+
 
 export default Petdetails;
+

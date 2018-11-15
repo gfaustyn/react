@@ -13,7 +13,6 @@ import {
 const APIKEY = "c42f6b4fc6a776412cc0a693ce4f40d6"
 
 
-
 class Shelters extends React.Component {
   state = {
     shelters: [], 
@@ -22,7 +21,7 @@ class Shelters extends React.Component {
     }
     
 
-// makes the API call and prints to the console/
+// makes the API call for andimal shelters by zipcode and prints to the console/ (1st endpoint)
   getPets = async  (zipcode) => {
     const res = await fetch(`http://api.petfinder.com/shelter.find?format=json&key=${APIKEY}&location=${zipcode}`)
     const json = await res.json();
@@ -52,7 +51,3 @@ class Shelters extends React.Component {
 }
 
 export default Shelters;
-// const api_call =
-    //   await fetch(`http://api.petfinder.com/shelter.getPets?format=json&key=${apiKey}&id=${this.loadPets}`);
-     {/* <Titles shelters={this.state.shelters} pets ={this.state.pets} />
-        <Pets shelters = {this.state.shelters} pets={this.state.pets} /> */}
