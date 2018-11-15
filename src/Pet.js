@@ -14,12 +14,13 @@ import {
     Link
 
 } from 'react-router-dom';
-
+// imported code from reactstrap to have pets displayed in a card style format 
 const Pet = (props) => {
   return (
     <div>
         <Card key={props.name}>
-        <Link  to={`/pet/${props.shelterPetId}`}> 
+        {/* router link */}
+        <Link  to={`/pet/${props.shelterPetId}`}>   
             <CardImg src={props.image} />
             <CardBody>
                 <CardTitle>

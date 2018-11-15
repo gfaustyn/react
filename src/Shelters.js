@@ -8,8 +8,7 @@ import {
 
 } from 'react-router-dom';
 
-
-
+// API key from petfinder 
 const APIKEY = "c42f6b4fc6a776412cc0a693ce4f40d6"
 
 

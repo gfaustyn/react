@@ -20,7 +20,7 @@ class Shelter extends React.Component {
                 pets: [],
                 shelter: [],
                 details: [],
-                hasError: false
+             
 
             }
     
@@ -39,10 +39,7 @@ class Shelter extends React.Component {
             console.log(this.state)
     }
          
-                    
-                    componentDidCatch(error, info) {
-                    this.setState({hasError: true });
-                    }
+    
 
         render() {       
             return (            
@@ -50,6 +47,7 @@ class Shelter extends React.Component {
                     <h1>{this.props.match.params.id}</h1>
                     
                     <CardColumns>
+                        {/* mapping over the returned content from API call and selecting from that list */}
                         
                         {this.state.pets.map(pet =>
                             <Pet key={pet.name.$t} 
