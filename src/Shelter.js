@@ -54,7 +54,9 @@ class Shelter extends React.Component {
                                 name={pet.name.$t} 
                                 shelterPetId={pet.id.$t}
                                 
-                               image={pet.media.photos.photo[3].$t} />
+                               image={pet.media.photos
+                                ? pet.media.photos.photo[3].$t
+                                : ""} />
                                
                         )}
                         
